@@ -1,68 +1,67 @@
 import React from 'react';
+import Dates from './Dates';
 
 function DatesList(props) {
     const {today, month, numToMonth} = props;
-    console.log(month)
 
+    function generateDaysInMonth(today, month, numToMonth) {
     // deal with current month (ex. December) *******
-    if (numToMonth(today.getMonth() + 1) === month) {
-        const currentDate = today.getDate();        
+        if (numToMonth(today.getMonth() + 1) === month) {
+            const currentDate = today.getDate();        
 
-        // Loop through each day and create a date string (ex. 2020-03-16)
-        let daysInLastMonth = [];
-        for (let day = 1; day < currentDate; day++) {            
+            // Loop through each day and create a date string (ex. 2020-03-16)
+            let daysInLastMonth = [];
+            for (let day = 1; day < currentDate; day++) {            
 
-            let dayStr = day.toString();
-            if (dayStr.length === 1) {
-                dayStr = `0${dayStr}`;  // Day string
+                let dayStr = day.toString();
+                if (dayStr.length === 1) {
+                    dayStr = `0${dayStr}`;  // Day string
+                }
+                
+                let monthStr = (today.getMonth() + 1).toString();
+                if (monthStr.length === 1) {
+                    monthStr=`0${monthStr}`;
+                }
+                let yearStr = today.getFullYear().toString();   // Year string
+
+                daysInLastMonth.push(`${yearStr}-${monthStr}-${dayStr}`)
             }
-            
-            let monthStr = (today.getMonth() + 1).toString();
+            return daysInLastMonth;
+        } else {  
+        // Deal with other months ********
+
+            // Set month and year string
+            let yearStr = today.getFullYear().toString();
+            let monthStr = monthToNum(month).toString();
             if (monthStr.length === 1) {
-                monthStr=`0${monthStr}`;
-            }
-            let yearStr = today.getFullYear().toString();   // Year string
-
-            daysInLastMonth.push(`${yearStr}-${monthStr}-${dayStr}`)
-        }
-        let daysInMonth = false;
-    } else {  
-    // Deal with other months ********
-
-        // Set month and year string
-        let yearStr = today.getFullYear().toString();
-        let monthStr = monthToNum(month).toString();
-        if (monthStr.length === 1) {
-            monthStr = `0${monthStr}`;
-        }
-
-        // Get last day of current month
-        let lastDay = new Date(Number(yearStr), monthToNum(month), 0);
-
-        // looop through each day and push to daysInMonth array
-        let daysInMonth = [];
-        for(let day = 1; day <= lastDay.getDate(); day++) {
-            let dayStr = day.toString();
-            if (dayStr.length === 1) {
-                dayStr = `0${dayStr}`;
+                monthStr = `0${monthStr}`;
             }
 
-            daysInMonth.push(`${yearStr}-${monthStr}-${dayStr}`);
+            // Get last day of current month
+            let lastDay = new Date(Number(yearStr), monthToNum(month), 0);
+
+            // looop through each day and push to daysInMonth array
+            let daysInMonth = [];
+            for(let day = 1; day <= lastDay.getDate(); day++) {
+                let dayStr = day.toString();
+                if (dayStr.length === 1) {
+                    dayStr = `0${dayStr}`;
+                }
+
+                daysInMonth.push(`${yearStr}-${monthStr}-${dayStr}`);
+            }
+            return daysInMonth;
         }
-        let daysInLastMonth = false;
     }
 
-    let daysInMonthFinal = [];
-    if (!daysInMonth) {
-        daysInMonthFinal = daysInLastMonth;
-    } else {
-        daysInMonthFinal = daysInMonth;
-    }
-
-    console.log(`${month}: ${daysInMonthFinal}`)
+    let daysInMonthArr = generateDaysInMonth(today, month, numToMonth);
 
     return (
         <div>
+            {/* day will be ex. {2019-12-03} */}
+            {daysInMonthArr.map((day, index) => {
+                return <Dates key={index} day={day}/>
+            })}
         </div>
     )
 }
