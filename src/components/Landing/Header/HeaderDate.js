@@ -8,7 +8,7 @@ function HeaderDate(props) {
 
     return(
         <div className="header_date">
-            <p>{nasaData.date}</p>
+            <p style={{color: "white"}}>Today: {nasaData.date}</p>
         </div>
     )
 }

@@ -28,8 +28,8 @@ function App() {
 
   return (
     <div className="App">
-      <Landing nasaData={nasaData}/>
-      <Previous today={today}/>
+      <Landing nasaData={nasaData} today={today}/>
+      {/* <Previous today={today}/> */}
     </div>
   );
 }

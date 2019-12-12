@@ -15,7 +15,7 @@ function Dates(props) {
         .catch(err => {
             console.log('Error message: ', err);
         })
-    },[]);
+    },[day]);
 
     return(
         <div>
