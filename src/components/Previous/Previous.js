@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import MonthButton from './MonthsButton/MonthButton';
 import styled from 'styled-components';
+import {css} from 'emotion';
 
 function Previous(props) {
     const {today} = props;
@@ -28,7 +29,16 @@ function Previous(props) {
                     return <MonthButton key={month} today={today} month={month} numToMonth={numToMonth}/>
                 })}
             </PreviousAPODs>
-            <div></div>
+            <div className={css`
+                padding: 30px;
+                background-color: hotpink;
+                max-width: 1280px;
+                margin: 0 auto;
+                font-size: 20px;
+                &:hover {
+                    color: white;
+                }
+            `}>This is where content needs to be displayed on click (used Emotion to style this)</div>
         </div>
     )
 
