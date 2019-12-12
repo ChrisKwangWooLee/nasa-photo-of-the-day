@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import MonthButton from './MonthsButton/MonthButton';
-import DatesList from './MonthsButton/DatesList';
+import styled from 'styled-components';
 
 function Previous(props) {
     const {today} = props;
@@ -9,14 +9,26 @@ function Previous(props) {
     // Make an array of months
     const monthsArr = monthsArrCreator(currentMonth);
 
+    const PreviousAPODs = styled.div`
+        
+        background: rgb(95, 100, 117);
+        display: flex;
+        width: 100%;
+        max-width: 1280px;
+        margin: 0 auto;
+        justify-content: center;
+    `
 
 
 
     return(
-        <div className="previous-APODs" id="previous-APODs">
-            {monthsArr.map(month => {
-                return <MonthButton key={month} today={today} month={month} numToMonth={numToMonth}/>
-            })}
+        <div>
+            <PreviousAPODs className="previous-APODs" id="previous-APODs" >
+                {monthsArr.map(month => {
+                    return <MonthButton key={month} today={today} month={month} numToMonth={numToMonth}/>
+                })}
+            </PreviousAPODs>
+            <div></div>
         </div>
     )
 
