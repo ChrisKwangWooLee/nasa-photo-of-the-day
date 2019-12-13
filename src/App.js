@@ -19,7 +19,7 @@ function App() {
     axios.get(`https://api.nasa.gov/planetary/apod?api_key=rhKDstkI9im8qkPVZiC42tWMjKC9R61qsf0w7X3D&date=${date}`)
     .then(response => {
       console.log(response);
-      setNasaData(response.data)   // object
+      setNasaData(response.data);   // object
     })
   }, [date])
 
@@ -28,8 +28,8 @@ function App() {
   }
   
   // Display a loading message while the data is fetching
-  if (!nasaData) return <h3>Loading...</h3>;
-
+  
+  
   return (
     <div className="App">
       <Landing nasaData={nasaData} today={today}/>

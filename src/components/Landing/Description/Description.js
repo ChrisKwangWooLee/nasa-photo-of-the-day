@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
 function Description(props) {
     const {nasaData} = props;
+    const [descDisplay, setDsecDisplay] = useState(false);
 
-    // Display a loading message while the data is fetching
-    if (!nasaData) return <h3>Loading...</h3>;
+    function displayHandler() {
+        setDsecDisplay(!descDisplay)
+    }
 
     const LandingDescription = styled.div`
         background: rgba(29,35,53,0.8);
@@ -14,8 +16,7 @@ function Description(props) {
         margin: 0 auto;
     `
     return(
-        <LandingDescription className="landing-description">
-            <h2 style={{fontFamily: "San Serif"}}>{nasaData.title}</h2>
+        <LandingDescription className="landing-description" style={{marginBottom: "5%"}}>
             <p style={{textAlign: "left"}}>{nasaData.explanation}</p>
         </LandingDescription>
     )
