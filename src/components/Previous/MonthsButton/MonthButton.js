@@ -1,20 +1,15 @@
 import React, {useState} from 'react';
-import Dates from './Dates';
 import {Dropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
 import styled from 'styled-components';
-import { isUserWhitespacable } from '@babel/types';
 
 function MonthButton(props) {
-    const {today, month, numToMonth} = props;
+    const {today, month, numToMonth, handleDateChange} = props;
 
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const toggle = () => setDropdownOpen(dropdownOpen => !dropdownOpen);
-
-    const Month = styled.div`
-        // border: 1px solid blue;
-    `
-
     
+    const Month = styled.div``
+
     function generateDaysInMonth(today, month, numToMonth) {
         // deal with current month (ex. December) *******
             if (numToMonth(today.getMonth() + 1) === month) {
@@ -64,7 +59,7 @@ function MonthButton(props) {
                 return daysInMonth;
             }
         }
-
+        // ex. daysInMonthArr generates an array of [2019-02-30, etc.]
         let daysInMonthArr = generateDaysInMonth(today, month, numToMonth);
 
 
@@ -74,7 +69,7 @@ function MonthButton(props) {
                 <DropdownToggle>
                     {month}
                 </DropdownToggle>
-                <DropdownMenu modifiers={{  setMaxHeight: {
+                <DropdownMenu   modifiers={{  setMaxHeight: {
                                                 enabled: true,
                                                 order: 890,
                                                 fn: (data) => {
@@ -90,7 +85,10 @@ function MonthButton(props) {
                                             },
                                             }}>
                     {daysInMonthArr.map((day, index) => {
-                        return <DropdownItem><Dates key={index} day={day}/></DropdownItem> //OnClick should go here!
+                        return <DropdownItem key={index} onClick ={() => 
+                                    handleDateChange(day)}>
+                                        {day}
+                                </DropdownItem>
                     })}
                 </DropdownMenu>
             </Dropdown>

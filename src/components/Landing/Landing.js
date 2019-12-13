@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 // Import child componenets
 import Header from './Header/Header'
@@ -7,7 +7,7 @@ import CTA from './CTA/CTA'
 
 // Import style files
 import styled from 'styled-components';
-import {Jumbotron, Button} from 'reactstrap';
+import {Jumbotron} from 'reactstrap';
 
 function Landing(props) {
     const {nasaData, today} = props;
@@ -18,16 +18,20 @@ function Landing(props) {
       margin: 0 auto;
       overflow: hidden;
       height: 100vh;
+      background: black;
+      z-index: 5;
+      display: flex;
+      justify-content: center;
     `
-    const Landing_bg = styled.img`
+    const LandingBg = styled.img`
       position: absolute;
       top: 0;
-      left: 50%;
-      min-height: 1000px;
+      height: 100vh;
       overflow: hidden;
+      min-height: 1000px;
       z-index: -100;
     `
-    const Jumbotron_container = styled.div`
+    const JumbotronContainer = styled.div`
       width: 70%;
       margin: 5% auto;
     `
@@ -36,14 +40,14 @@ function Landing(props) {
 
     return(
       <Landing className="landing">
-        <Landing_bg className="landing_bg" src={nasaData.url}/>
-        <Jumbotron_container>
+        <LandingBg className="landing_bg" src={nasaData.url}/>
+        <JumbotronContainer>
           <Jumbotron fluid style={{background: 'rgba(29,35,53,0.5)'}}>
             <Header nasaData={nasaData} today={today}/>
             <Description nasaData={nasaData}/>
             <CTA />
           </Jumbotron>
-        </Jumbotron_container>
+        </JumbotronContainer>
       </Landing>
     )
   }

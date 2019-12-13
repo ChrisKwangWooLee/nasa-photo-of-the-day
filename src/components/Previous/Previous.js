@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import MonthButton from './MonthsButton/MonthButton';
 import styled from 'styled-components';
-import {css} from 'emotion';
+// import {css} from 'emotion';
 
 function Previous(props) {
-    const {today} = props;
+    const {today, handleDateChange} = props;
     const currentMonth = today.getMonth() + 1;
 
     // Make an array of months
@@ -22,14 +22,19 @@ function Previous(props) {
 
 
 
+
     return(
         <div>
             <PreviousAPODs className="previous-APODs" id="previous-APODs" >
                 {monthsArr.map(month => {
-                    return <MonthButton key={month} today={today} month={month} numToMonth={numToMonth}/>
+                    return <MonthButton key={month} 
+                                        today={today} 
+                                        month={month} 
+                                        numToMonth={numToMonth}
+                                        handleDateChange={handleDateChange}/>
                 })}
             </PreviousAPODs>
-            <div className={css`
+            {/* <div className={css`
                 padding: 30px;
                 background-color: hotpink;
                 max-width: 1280px;
@@ -38,7 +43,7 @@ function Previous(props) {
                 &:hover {
                     color: white;
                 }
-            `}>This is where content needs to be displayed on click (used Emotion to style this)</div>
+            `}>This is where content needs to be displayed on click (used Emotion to style this)</div> */}
         </div>
     )
 

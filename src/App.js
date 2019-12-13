@@ -21,7 +21,11 @@ function App() {
       console.log(response);
       setNasaData(response.data)   // object
     })
-  }, [])
+  }, [date])
+
+  function handleDateChange(newDate) {
+    setDate(newDate);
+  }
   
   // Display a loading message while the data is fetching
   if (!nasaData) return <h3>Loading...</h3>;
@@ -29,7 +33,7 @@ function App() {
   return (
     <div className="App">
       <Landing nasaData={nasaData} today={today}/>
-      <Previous today={today}/>
+      <Previous today={today} handleDateChange={handleDateChange}/>
     </div>
   );
 }

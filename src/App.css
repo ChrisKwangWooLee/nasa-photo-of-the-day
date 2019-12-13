@@ -31,12 +31,3 @@
     transform: rotate(360deg);
   }
 }
-
-.landing .landing_bg{
-position: absolute;
-top: 0;
-left: 0;
-height: 100vh;
-overflow: hidden;
-z-index: -100;
-}

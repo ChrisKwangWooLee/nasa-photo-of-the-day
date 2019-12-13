@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 function HeaderTitle(props) {
     const {today} = props;
-    const Header_title = styled.div`
+    const HeaderTitle = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
@@ -10,10 +10,10 @@ function HeaderTitle(props) {
     `
 
     return(
-        <Header_title className="header_title">
-            <img className='NASA_logo' src="https://www.nasa.gov/favicon.ico" />
+        <HeaderTitle className="header_title">
+            <img className='NASA_logo' src="https://www.nasa.gov/favicon.ico" alt="NASA APOD"/>
             <h1 style={{color: "white"}}>APOD {today.getFullYear()}</h1>
-        </Header_title>
+        </HeaderTitle>
     )
 }
 
